@@ -11,7 +11,7 @@ public class Card {
 	}
 
 	public String toString(){
-		return this.suit.toString() + "-" + this.rank.toString();
+		 return this.rank.toString() + " of " + this.suit.toString();
 	}
 
 	public Rank getRank(){
