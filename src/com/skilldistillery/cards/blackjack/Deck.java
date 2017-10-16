@@ -78,7 +78,7 @@ public void shuffle(){
 		return Output;
 	}*/
 	
-	public void moveAllToDeck(Deck moveTo){
+	public void movetoDeck(Deck moveTo){
 		int thisDeckSize = this.cards.size();
 		//put cards in moveTo deck
 		for(int i = 0; i < thisDeckSize; i++){

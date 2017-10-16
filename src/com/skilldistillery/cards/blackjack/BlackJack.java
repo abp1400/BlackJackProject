@@ -62,6 +62,31 @@ public class BlackJack {
 					//Display dealer cards
 					System.out.println("Dealer Hand: " + dealer.hand.getCard(0).toString() + " and [hidden]");
 					
+					//If there is an immediate player blackjack win
+					if((p1.hand.cardsValue() ==21 && roundOver ==false)) {
+						System.out.println("You hit blackjack! You win! Collect your chips, "+p1.name);
+						p1.chipcount += p1.bet;
+						roundOver = true;
+						break;
+					}
+					
+					//If there is an immediate dealer blackjack win
+					else if((p1.hand.cardsValue() ==21 && roundOver ==false)) {
+						
+						System.out.println("Dealer Hand: " + dealer.hand.toString());
+						System.out.println("Dealer hit blackjack! You lose!");
+						p1.chipcount -= p1.bet;
+						roundOver = true;
+						break;
+						//If there is a blackjack tie
+				
+				} else if((dealer.hand.cardsValue() == 21 && p1.hand.cardsValue() ==21 && roundOver == false)) {
+					System.out.println("Dealer Hand: " + dealer.hand.toString());
+					System.out.println("You both got 21! It's a tie round! Let's go again!");
+							roundOver = true;
+						}
+					
+					
 					//Hit or Stand
 					System.out.println("Would you like to Hit (1) or Stand (2)");
 					int hitOrStand = kb.nextInt();	
@@ -155,8 +180,8 @@ public class BlackJack {
 				}
 
 				//deck recycling method
-				p1.hand.moveAllToDeck(workingDeck);
-				dealer.hand.moveAllToDeck(workingDeck);
+				p1.hand.movetoDeck(workingDeck);
+				dealer.hand.movetoDeck(workingDeck);
 				workingDeck.shuffle();
 				System.out.println("End of Round.");
 				
