@@ -21,4 +21,7 @@ I also used two enum classes of Suit and Rank.
 This project used array lists, and the various methods inherent to them, such as get, add, remove, and shuffle.
 
 The cards, which were the basis of the hands and decks, were created using enums.
-The deck was created by creating an 
+The deck was created by creating an array list of cards, and then using two loops to add 52 cards to it.
+We take a loop of suits (4 of them) and then within that loop, loop the ranks (13 of them), and then add them to the array.
+
+  

@@ -1,27 +1,26 @@
 package com.skilldistillery.cards.blackjack;
 
-import java.util.Scanner;
+import java.util.*;
 
-public class GameApp {
-
-		public static void main(String[] args){
+public class BlackJack {
+	public void startGame() {
+		
+			
 			Scanner kb = new Scanner(System.in);
 			
-			System.out.println("Welcome to the Fabulous Sands Casino Blackjack Table! Please enter your name!");
+			System.out.println("Welcome to the Fabulous Sands Casino Blackjack Table! \nPlease enter your name:");
 			
 			Player p1 = new Player();
-			
 			p1.name = kb.nextLine();
-			
+			p1.bet = 0; 
+			p1.chipcount = 100;
+			p1.hand = new Hand();
 			Deck workingDeck = new Deck();
-			
 			workingDeck.createFullDeck();
 			workingDeck.shuffle();
 			
 			Player dealer = new Player();
-			p1.bet = 0; 
-			p1.chipcount = 100;
-			p1.hand = new Hand();
+			
 			dealer.hand = new Hand();
 					
 			
@@ -70,7 +69,7 @@ public class GameApp {
 					//They hit
 					if(hitOrStand == 1){
 						p1.hand.draw(workingDeck);
-						System.out.println("You draw a:" + p1.hand.getCard(p1.hand.deckSize()-1).toString());
+						System.out.println("You drew a: " + p1.hand.getCard(p1.hand.deckSize()-1).toString());
 						//Bust if they go over 21
 						if(p1.hand.cardsValue() > 21){
 							System.out.println("You got " + p1.hand.cardsValue() + " points, you busted," + p1.name +"!");
@@ -90,7 +89,7 @@ public class GameApp {
 				
 				//If there is a blackjack tie
 				if((dealer.hand.cardsValue() == 21 && p1.hand.cardsValue() ==21 && roundOver == false)) {
-					System.out.println("It's a tie round! Let's go again!");
+					System.out.println("You both got 21! It's a tie round! Let's go again!");
 					roundOver = true;
 				}
 				
@@ -127,12 +126,14 @@ public class GameApp {
 				
 				//If Dealer Busts
 				if((dealer.hand.cardsValue()>21)&& roundOver == false){
-					System.out.println("Dealer got " + dealer.hand.cardsValue() + " points.  He Busted!\n You win! Collect your chips, "+p1.name);
+					System.out.println("Dealer got " + dealer.hand.cardsValue() + " points.  He Busted! You win! \nCollect your chips, "+p1.name);
 					p1.chipcount += p1.bet;
 					roundOver = true;
 				}
 				//If it's a tie game
 				if((dealer.hand.cardsValue() == p1.hand.cardsValue()) && roundOver == false){
+					System.out.println("\nDealer got " + dealer.hand.cardsValue() + " points.");
+					System.out.println("You got " + p1.hand.cardsValue() + " points.");
 					System.out.println("It's a tie round, let's go again, "+ p1.name);
 					roundOver = true;
 				}
@@ -146,14 +147,17 @@ public class GameApp {
 				}
 				else if(roundOver == false) //dealer wins
 				{
-					System.out.println("Dealer wins.");
+					
+					System.out.println("\nDealer got " + dealer.hand.cardsValue() + " points.");
+					System.out.println("You got " + p1.hand.cardsValue() + " points. You lose!");
+				//	System.out.println("Dealer wins.");
 					p1.chipcount -= p1.bet;
 				}
 
 				//deck recycling method
 				p1.hand.moveAllToDeck(workingDeck);
 				dealer.hand.moveAllToDeck(workingDeck);
-				//playingDeck.shuffle();
+				workingDeck.shuffle();
 				System.out.println("End of Round.");
 				
 			}
