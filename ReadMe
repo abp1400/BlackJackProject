@@ -1,3 +1,24 @@
 #BlackJack Project
 #by Alex Perez
 
+This blackjack game is based on the classic card game in which two or or more players
+will take a shuffled deck of cards, each initially receiving two cards each.
+Each card is assigned a specific value, the numbered cards with a value of 2-10, the face cards
+a value of 10 each, and the Ace with a variable value of 1 or 11.  
+
+A player will win a round of play, if he/she scores more points than their opponent WITHOUT going over 21.
+A player will also win if he/she scores 21. A player will lose if he/she goes over 21.
+
+After the initial dealing of two cards per player, the player will be given
+the opportunity to "hit" or get more cards, or "stand" and draw no more cards.
+The dealer shall also have the opportunity to hit or stand. Each side may hit or stand as long
+as they are below 21. If neither side has "busted," or gone beyond 21, then each side will reveal their cards,
+the side with the superior value will win the round.
+
+My implementation of this game used 4 classes - card, deck, hand, player, as well as a game app.
+I also used two enum classes of Suit and Rank.
+
+This project used array lists, and the various methods inherent to them, such as get, add, remove, and shuffle.
+
+The cards, which were the basis of the hands and decks, were created using enums.
+The deck was created by creating an 
